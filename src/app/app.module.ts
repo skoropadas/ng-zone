@@ -7,6 +7,9 @@ import {NgZoneCounterComponent} from './ng-zone-counter/ng-zone-counter.componen
 import {AfterViewCheckedDirective} from './after-view-checked.directive';
 import {NgZoneMouseMoveComponent} from './ng-zone-mouse-move/ng-zone-mouse-move.component';
 import {NgZoneOperatorMouseMoveComponent} from './ng-zone-operator-mouse-move/ng-zone-operator-mouse-move.component';
+import {
+  ComponentWithMarkForCheckComponent
+} from './component-with-mark-for-check/component-with-mark-for-check.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +19,7 @@ import {NgZoneOperatorMouseMoveComponent} from './ng-zone-operator-mouse-move/ng
     AfterViewCheckedDirective,
     NgZoneMouseMoveComponent,
     NgZoneOperatorMouseMoveComponent,
+    ComponentWithMarkForCheckComponent,
   ],
   imports: [
     BrowserModule

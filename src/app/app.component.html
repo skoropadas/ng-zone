@@ -72,10 +72,11 @@ In general terms, it works like this:
 <p>
   This may hide some bugs of the application, for example, you have a clock on the page that is updated every second,
   and
-  a component with a bug, the component updates its state, you see how it changes, etc.,
+  a component with a bug, the component updates its state, you see how it changes, etc., it works fine,
   but if you remove the clock from the page, then your component stops working. Why? Because you initially made a bug in
   its design, but due to the fact that the clock called <code>NgZone</code> every second, you didn't notice it.
-  Yeah, this happens.
+  Yeah, this happens. Because sometimes developers don't understand how <code>markForCheck</code> works.
+  So the most optimized approach it`s using <code>ngZone</code> only if it needs, and avoid his idle calls.
 </p>
 
 <p>
@@ -85,7 +86,13 @@ In general terms, it works like this:
 </p>
 
 <p>
-  Just look at the demo below, despite the fact that I filter the result by <code>throttleTime</code> operator, the
+  Also, a component with a random number generates it every 50 milliseconds and calls <code>markForCheck</code>,
+  but I specifically detached it from <code>NgZone</code> so as not to affect it, so you can see that it is updated
+  only when some other event triggers <code>NgZone</code>, such as <code>mousemove</code> in the components below.
+</p>
+
+<p>
+  Just look at the demo, despite the fact that I filter the result by <code>throttleTime</code> operator, the
   Angular calls <code>NgZone</code> for each triggering of the event.
 </p>
 
@@ -133,6 +140,9 @@ In general terms, it works like this:
   <li>
     If you use an observable with any operator or method that causes a delay such as <code>debounceTime</code>, <code>delay</code>
     etc., use a special operator, or output it yourself later from <code>NgZone</code>
+  </li>
+  <li>
+    If you have created a regular observable without delays, you don't need to do anything!
   </li>
 </ul>
 
