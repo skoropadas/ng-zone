@@ -1,0 +1,22 @@
+:host {
+  display: block;
+
+  &.blink {
+    animation: blink-animation 2s;
+    @keyframes blink-animation {
+      from {
+        background-color: #5783c5;
+      }
+      to {
+        background-color: white;
+      }
+    }
+  }
+}
+
+code {
+  background-color: #eee;
+  padding: 2px;
+  border: 1px solid #b7aaaa;
+  border-radius: 7px;
+}
