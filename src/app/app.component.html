@@ -4,9 +4,10 @@
 <p>
   Angular has a built-in mechanism for detecting changes, it works pretty well, and helps us in updating views, but not
   working with it correctly can lead to poor optimization of the application, as a result, your application starts to
-  work slowly, has some bugs etc. and it becomes quite difficult to find what exactly went wrong, because most likely
-  the code was written wrong. Below is one of the problems that often occurs in the application and an example of its
-  solution.
+  work slowly, has some bugs etc. and it becomes quite difficult to find what exactly went wrong.
+  This time we will talk about <code>NgZone</code>, how it is called, and how to optimize its operation, because if we
+  do not control
+  <code>NgZone</code>, we may not notice the bugs that we made at the design stage of the component
 </p>
 
 <h3>But first! How Detection Changes works?</h3>
@@ -41,6 +42,23 @@ In general terms, it works like this:
     check and update the view of such components, then Angular make <code>NgZone</code> stable.
   </li>
 </ol>
+
+<h3>Important notes</h3>
+
+<p>Here we are talking only about <code>OnPush</code> strategy.</p>
+
+<p>
+  If an update is triggered by an event in the template, the Angular automatically calls <code>markForCheck</code> from
+  this component, and marks all components up the tree for updating, after that <code>NgZone</code> starts and starts
+  the process of
+  detecting changes.
+</p>
+
+<p>
+  If you subscribe to some event from the component code, using <code>RxJS</code> you should call
+  <code>markForCheck</code> yourself, because the Angular is unable to determine without a template which component
+  caused the <code>NgZone</code> to trigger
+</p>
 
 <h3>So okay, but where is the problem?</h3>
 
