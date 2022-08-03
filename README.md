@@ -5,7 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 > **Note**
 > This is a note
 
-> **Warning
+> **Warning**
 > This is a warning
 
 ## Development server
